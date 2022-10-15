@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../onboarding/view/onboarding_view.dart';
 import '../splash/splash_view.dart';
 
 class Routes{
   static const String splashRoute = "/";
+  static const String onBoardingRoute = "/onBoarding";
 }
 
 class RouteGenerator{
@@ -11,6 +13,8 @@ class RouteGenerator{
     switch(settings.name){
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
+      case Routes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
       default:
         return unDefinedRoute();
     }
