@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
 import 'package:groceries_app/presentation/resources/styles_manager.dart';
+import 'package:groceries_app/presentation/resources/values_manager.dart';
 
 import 'font_manager.dart';
 
@@ -25,20 +26,21 @@ ThemeData getApplicationTheme(){
     //   splashColor: ColorManager.lightPrimary,
     // ),
 
-    // // elevated button theme
-    // elevatedButtonTheme: ElevatedButtonThemeData(
-    //   style: ElevatedButton.styleFrom(
-    //     textStyle: getRegularStyle(fontSize: FontSize.s17, color: ColorManager.white),
-    //     primary: ColorManager.primary,
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(AppSize.s12),
-    //     ),
-    //   ),
-    // ),
+    // elevated button theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        textStyle: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.white2),
+        primary: ColorManager.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSize.s19),
+        ),
+      ),
+    ),
 
     // text theme
     textTheme: TextTheme(
-      titleMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
+      headlineLarge: getSemiBoldStyle(fontSize: FontSize.s48, color: ColorManager.white),
+      titleMedium: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.lightWhite),
     ),
 
     // // input decoration theme(text form field)

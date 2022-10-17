@@ -5,14 +5,14 @@ import 'package:groceries_app/presentation/resources/assets_manager.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
 import 'package:groceries_app/presentation/resources/routes_manager.dart';
 
-class SplashView extends StatefulWidget {
-  const SplashView({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashView> createState() => _SplashViewState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashViewState extends State<SplashView> {
+class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
   _startDelay(){

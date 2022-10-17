@@ -74,10 +74,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: Gilroy
-     fonts:
-       - asset: assets/fonts/Gilroy-Medium.ttf
-         weight: 500
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Gilroy-Medium.ttf
+          weight: 500
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -14,8 +14,15 @@ TextStyle _getTextStyle(
 }
 
 TextStyle getMediumStyle({
-  double fontSize = FontSize.s14,
+  double fontSize = FontSize.s16,
   required Color color,
 }){
   return _getTextStyle(fontSize, FontWeightManager.medium, color);
+}
+
+TextStyle getSemiBoldStyle({
+  double fontSize = FontSize.s18,
+  required Color color,
+}){
+  return _getTextStyle(fontSize, FontWeightManager.semiBold, color);
 }
