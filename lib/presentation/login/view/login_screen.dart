@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:groceries_app/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:groceries_app/presentation/resources/assets_manager.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
 
+import '../../../app/di.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
@@ -15,9 +18,29 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final  _formKey = GlobalKey<FormState>();
+
+  _bind(){
+    _emailController.addListener(() => _viewModel.setEmail(_emailController.text));
+    _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isLoggedIn) {
+      if(isLoggedIn){
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +88,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: AppSize.s25, right: AppSize.s28),
-                  child: TextFormField(
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: _emailController,
-                    cursorColor: ColorManager.primary,
-                    decoration: const InputDecoration(
-                      hintText: AppStrings.emailExample,
-                      errorText: null,
-                    ),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outIsEmailValid,
+                    builder: (context, snapshot){
+                      return TextFormField(
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        cursorColor: ColorManager.primary,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.emailExample,
+                          errorText: (snapshot.data ?? true) ? null : AppStrings.invalidEmail,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(height: AppSize.s35),
@@ -87,17 +115,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: AppSize.s25, right: AppSize.s28),
-                  child: TextFormField(
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: _passwordController,
-                    obscureText: true,
-                    cursorColor: ColorManager.primary,
-                    decoration:  InputDecoration(
-                      hintText: AppStrings.password,
-                      errorText: null,
-                      suffixIcon: Icon(Icons.visibility_off_outlined, color: ColorManager.grey,),
-                    ),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outIsPasswordValid,
+                    builder: (context, snapshot){
+                      return StreamBuilder<bool>(
+                        stream: _viewModel.outIsPasswordVisible,
+                        builder: (context, visibleSnapshot){
+                          return TextFormField(
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            keyboardType: TextInputType.visiblePassword,
+                            controller: _passwordController,
+                            obscureText: (visibleSnapshot.data ?? true) ? true : false,
+                            cursorColor: ColorManager.primary,
+                            decoration:  InputDecoration(
+                              hintText: AppStrings.password,
+                              errorText: (snapshot.data ?? true) ? null : AppStrings.invalidPassword,
+                              suffixIcon: IconButton(
+                                onPressed: (){
+                                  _viewModel.changePasswordVisibility((visibleSnapshot.data ?? true));
+                                },
+                                icon: (visibleSnapshot.data ?? true) ?
+                                Icon(Icons.visibility_off_outlined, color: ColorManager.grey,) :
+                                Icon(Icons.visibility_outlined, color: ColorManager.grey,)
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
                 Padding(
@@ -124,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: AppSize.s67,
                         child: ElevatedButton(
                             onPressed: () {
-
+                              _viewModel.login();
                             },
                             child: const Text(
                               AppStrings.loginButton,
@@ -158,5 +203,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 }

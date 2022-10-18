@@ -36,7 +36,7 @@ class OnBoardingScreen extends StatelessWidget {
                 AppStrings.onBoardingSubTitle,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              const SizedBox(height: AppSize.s35,),
+              const SizedBox(height: AppSize.s40),
               SizedBox(
                   width: AppSize.s353,
                   height: AppSize.s67,

@@ -7,7 +7,9 @@ class AppStrings {
   static const loginSubtitle = "Enter your email and password";
   static const email = "Email";
   static const emailExample = "you@example.com";
+  static const invalidEmail = "Email format is wrong";
   static const password = "Password";
+  static const invalidPassword = "Password should be at least 6 chars";
   static const forgotPassword = "Forgot Password?";
   static const loginButton = "Log In";
   static const noAccount = "Don\'t have an account? ";
