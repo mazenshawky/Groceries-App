@@ -48,6 +48,8 @@ ThemeData getApplicationTheme(){
       titleSmall: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.grey),
       bodyMedium: getMediumStyle(fontSize: FontSize.s18, color: ColorManager.black),
       bodySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
+      displayMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
+      displaySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
     ),
 
     // input decoration theme(text form field)

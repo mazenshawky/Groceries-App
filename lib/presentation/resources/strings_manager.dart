@@ -3,13 +3,22 @@ class AppStrings {
   static const onBoardingTitle = "  Welcome\n to our store";
   static const onBoardingSubTitle = "Get your groceries in as fast as one hour";
   static const getStarted = "Get Started";
-  static const loginTitle = "Login";
+  static const login = "Login";
   static const loginSubtitle = "Enter your email and password";
   static const email = "Email";
   static const emailExample = "you@example.com";
   static const password = "Password";
   static const forgotPassword = "Forgot Password?";
-  static const login = "Log In";
+  static const loginButton = "Log In";
   static const noAccount = "Don\'t have an account? ";
   static const signUp = "Signup";
+  static const register = "Sign Up";
+  static const registerSubtitle = "Enter your credentials to continue";
+  static const userName = "Username";
+  static const alreadyHaveAnAccount = "Already have an account? ";
+  static const byContinuing = "By continuing you agree to our ";
+  static const termOfService = "Term of Service";
+  static const and = "and ";
+  static const privacyPolicy = "Privacy Policy.";
+
 }

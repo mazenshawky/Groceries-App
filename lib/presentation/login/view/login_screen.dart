@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: AppSize.s25),
                   child: Text(
-                    AppStrings.loginTitle,
+                    AppStrings.login,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             },
                             child: const Text(
-                              AppStrings.login,
+                              AppStrings.loginButton,
                             ))),
                   ],
                 ),
