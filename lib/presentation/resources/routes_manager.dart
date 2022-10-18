@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groceries_app/presentation/login/view/login_screen.dart';
+import 'package:groceries_app/presentation/register/view/register_screen.dart';
 
 import '../onboarding/view/onboarding_screen.dart';
 import '../splash/splash_screen.dart';
@@ -9,6 +10,7 @@ class Routes{
   static const String splashRoute = "/";
   static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
+  static const String registerRoute = "/register";
 }
 
 class RouteGenerator{
@@ -20,6 +22,8 @@ class RouteGenerator{
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case Routes.registerRoute:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       default:
         return unDefinedRoute();
     }
