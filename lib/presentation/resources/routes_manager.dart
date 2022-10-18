@@ -27,6 +27,7 @@ class RouteGenerator{
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

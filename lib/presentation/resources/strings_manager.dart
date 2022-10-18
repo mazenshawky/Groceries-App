@@ -17,6 +17,7 @@ class AppStrings {
   static const register = "Sign Up";
   static const registerSubtitle = "Enter your credentials to continue";
   static const userName = "Username";
+  static const invalidUserName = "Username should not be empty";
   static const alreadyHaveAnAccount = "Already have an account? ";
   static const byContinuing = "By continuing you agree to our ";
   static const termOfService = "Term of Service";

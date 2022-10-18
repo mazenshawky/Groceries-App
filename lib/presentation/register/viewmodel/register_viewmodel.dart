@@ -2,24 +2,30 @@ import 'dart:async';
 
 import 'package:groceries_app/presentation/common/freezed_data_classes.dart';
 
-class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
+class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOutputs{
+  final StreamController _userNameStreamController = StreamController<String>.broadcast();
+
   final StreamController _emailStreamController = StreamController<String>.broadcast();
 
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
 
   final StreamController _passwordVisibilityStreamController = StreamController<bool>.broadcast();
 
-  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>.broadcast();
+  final StreamController isUserRegisteredInSuccessfullyStreamController = StreamController<bool>.broadcast();
 
-  var loginObject = LoginObject("", "");
+  var registerObject = RegisterObject("", "", "");
 
   // inputs
   void dispose(){
+    _userNameStreamController.close();
     _emailStreamController.close();
     _passwordStreamController.close();
     _passwordVisibilityStreamController.close();
-    isUserLoggedInSuccessfullyStreamController.close();
+    isUserRegisteredInSuccessfullyStreamController.close();
   }
+
+  @override
+  Sink get inputUserName => _userNameStreamController.sink;
 
   @override
   Sink get inputEmail => _emailStreamController.sink;
@@ -31,20 +37,26 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   Sink get inputChangePasswordVisibility => _passwordVisibilityStreamController.sink;
 
   @override
-  login() {
-    isUserLoggedInSuccessfullyStreamController.add(true);
+  register() {
+    isUserRegisteredInSuccessfullyStreamController.add(true);
+  }
+
+  @override
+  setUserName(String userName) {
+    _userNameStreamController.add(userName);
+    registerObject = registerObject.copyWith(userName: userName);
   }
 
   @override
   setEmail(String email) {
     _emailStreamController.add(email);
-    loginObject = loginObject.copyWith(email: email);
+    registerObject = registerObject.copyWith(email: email);
   }
 
   @override
   setPassword(String password) {
     _passwordStreamController.add(password);
-    loginObject = loginObject.copyWith(password: password);
+    registerObject = registerObject.copyWith(password: password);
   }
 
   @override
@@ -54,6 +66,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
 
   // outputs
   @override
+  Stream<bool> get outIsUserNameValid => _userNameStreamController.stream.map((userName) => _isUserNameValid(userName));
+
+  @override
   Stream<bool> get outIsEmailValid => _emailStreamController.stream.map((email) => _isEmailValid(email));
 
   @override
@@ -61,6 +76,10 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
 
   @override
   Stream<bool> get outIsPasswordVisible => _passwordVisibilityStreamController.stream.map((state) => state);
+
+  bool _isUserNameValid(String userName){
+    return userName.isNotEmpty;
+  }
 
   bool _isEmailValid(String email){
     return RegExp(
@@ -73,14 +92,18 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   }
 }
 
-abstract class LoginViewModelInputs{
+abstract class RegisterViewModelInputs{
+  setUserName(String userName);
+
   setEmail(String email);
 
   setPassword(String password);
 
   changePasswordVisibility(bool state);
 
-  login();
+  register();
+
+  Sink get inputUserName;
 
   Sink get inputEmail;
 
@@ -89,7 +112,9 @@ abstract class LoginViewModelInputs{
   Sink get inputChangePasswordVisibility;
 }
 
-abstract class LoginViewModelOutputs{
+abstract class RegisterViewModelOutputs{
+  Stream<bool> get outIsUserNameValid;
+
   Stream<bool> get outIsEmailValid;
 
   Stream<bool> get outIsPasswordValid;
