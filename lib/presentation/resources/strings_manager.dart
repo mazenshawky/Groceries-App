@@ -23,5 +23,11 @@ class AppStrings {
   static const termOfService = "Term of Service";
   static const and = "and ";
   static const privacyPolicy = "Privacy Policy.";
-
+  static const exploreTitle = "Find Products";
+  static const cartTitle = "My Cart";
+  static const shop = "Shop";
+  static const explore = "Explore";
+  static const cart = "Cart";
+  static const favourite = "Favourite";
+  static const account = "Account";
 }

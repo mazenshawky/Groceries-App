@@ -13,7 +13,7 @@ class Routes{
   static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
-  static const String homeRoute = "/home";
+  static const String homeRoute = "/shop";
 }
 
 class RouteGenerator{

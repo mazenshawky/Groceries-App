@@ -9,16 +9,15 @@ ThemeData getApplicationTheme(){
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,
-    // app bar theme
-    // appBarTheme: AppBarTheme(
-    //   centerTitle: true,
-    //   color: ColorManager.primary,
-    //   elevation: AppSize.s4,
-    //   shadowColor: ColorManager.lightPrimary,
-    //   titleTextStyle: getRegularStyle(fontSize: FontSize.s16,color: ColorManager.white),
-    // ),
 
-    // // button theme
+    // app bar theme
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      color: ColorManager.white3,
+      elevation: AppSize.s0,
+    ),
+
+    // button theme
     // buttonTheme: ButtonThemeData(
     //   shape: StadiumBorder(),
     //   disabledColor: ColorManager.grey1,
@@ -50,6 +49,8 @@ ThemeData getApplicationTheme(){
       bodySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
       displayMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
       displaySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
+      displayLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
+      bodyLarge: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.darkGrey),
     ),
 
     // input decoration theme(text form field)

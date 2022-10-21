@@ -38,6 +38,7 @@ dependencies:
   freezed: ^2.2.0
   retrofit: ^3.0.1+1
   get_it: ^7.2.0
+  conditional_builder_null_safety: ^0.0.6
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,8 @@ flutter:
   fonts:
     - family: Gilroy
       fonts:
+        - asset: assets/fonts/Gilroy-Bold.ttf
+          weight: 700
         - asset: assets/fonts/Gilroy-SemiBold.ttf
           weight: 600
         - asset: assets/fonts/Gilroy-Medium.ttf
