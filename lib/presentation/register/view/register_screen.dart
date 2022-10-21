@@ -47,214 +47,248 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.white,
+      backgroundColor: ColorManager.white3,
       body: _getContentWidget(),
     );
   }
 
   Widget _getContentWidget(){
-    return Padding(
-      padding: const EdgeInsets.only(top: AppSize.s100),
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(child: SvgPicture.asset(ImageAssets.logoOrange)),
-              const SizedBox(height: AppSize.s90),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25),
-                child: Text(
-                  AppStrings.register,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ),
-              const SizedBox(height: AppSize.s15),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25),
-                child: Text(
-                  AppStrings.registerSubtitle,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ),
-              const SizedBox(height: AppSize.s40),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25),
-                child: Text(
-                  AppStrings.userName,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: AppSize.s25, right: AppSize.s28),
-                child: StreamBuilder<bool>(
-                  stream: _viewModel.outIsUserNameValid,
-                  builder: (context, snapshot){
-                    return TextFormField(
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      keyboardType: TextInputType.text,
-                      controller: _userNameController,
-                      cursorColor: ColorManager.primary,
-                      decoration: InputDecoration(
-                        hintText: AppStrings.userName,
-                        errorText: (snapshot.data ?? true) ? null : AppStrings.invalidUserName,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: AppSize.s35),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25),
-                child: Text(
-                  AppStrings.email,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: AppSize.s25, right: AppSize.s28),
-                child: StreamBuilder<bool>(
-                  stream: _viewModel.outIsEmailValid,
-                  builder: (context, snapshot){
-                    return TextFormField(
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      cursorColor: ColorManager.primary,
-                      decoration: InputDecoration(
-                        hintText: AppStrings.emailExample,
-                        errorText: (snapshot.data ?? true) ? null : AppStrings.invalidEmail,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: AppSize.s35),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25),
-                child: Text(
-                  AppStrings.password,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: AppSize.s25, right: AppSize.s28),
-                child: StreamBuilder<bool>(
-                  stream: _viewModel.outIsPasswordValid,
-                  builder: (context, snapshot){
-                    return StreamBuilder<bool>(
-                      stream: _viewModel.outIsPasswordVisible,
-                      builder: (context, visibleSnapshot){
-                        return TextFormField(
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          keyboardType: TextInputType.visiblePassword,
-                          controller: _passwordController,
-                          obscureText: (visibleSnapshot.data ?? true) ? true : false,
-                          cursorColor: ColorManager.primary,
-                          decoration:  InputDecoration(
-                            hintText: AppStrings.password,
-                            errorText: (snapshot.data ?? true) ? null : AppStrings.invalidPassword,
-                            suffixIcon: IconButton(
-                                onPressed: (){
-                                  _viewModel.changePasswordVisibility((visibleSnapshot.data ?? true));
-                                },
-                                icon: (visibleSnapshot.data ?? true) ?
-                                Icon(Icons.visibility_off_outlined, color: ColorManager.grey,) :
-                                Icon(Icons.visibility_outlined, color: ColorManager.grey,)
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: AppSize.s20),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.byContinuing,
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Text(
-                        AppStrings.termOfService,
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSize.s8),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.and,
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    InkWell(
-                      onTap: (){},
-                      child: Text(
-                        AppStrings.privacyPolicy,
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSize.s30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: AppSize.s280,
+              child: Stack(
                 children: [
-                  SizedBox(
-                      width: AppSize.s353,
-                      height: AppSize.s67,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            _viewModel.register();
-                          },
-                          child: const Text(
-                            AppStrings.register,
-                          ))),
+                  Container(
+                    height: AppSize.s280,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(ImageAssets.backgroundUp),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Center(child: SvgPicture.asset(ImageAssets.logoOrange)),
                 ],
               ),
-              const SizedBox(height: AppSize.s25),
-              Padding(
-                padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
-                child: InkWell(
-                  onTap: (){
-                    Navigator.of(context).pop();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        AppStrings.alreadyHaveAnAccount,
-                        style: Theme.of(context).textTheme.labelMedium,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: AppSize.s25),
+              child: Text(
+                AppStrings.register,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
+            const SizedBox(height: AppSize.s15),
+            Padding(
+              padding: const EdgeInsets.only(left: AppSize.s25),
+              child: Text(
+                AppStrings.registerSubtitle,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+            const SizedBox(height: AppSize.s40),
+            Padding(
+              padding: const EdgeInsets.only(left: AppSize.s25),
+              child: Text(
+                AppStrings.userName,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: AppSize.s25, right: AppSize.s28),
+              child: StreamBuilder<bool>(
+                stream: _viewModel.outIsUserNameValid,
+                builder: (context, snapshot){
+                  return TextFormField(
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    keyboardType: TextInputType.text,
+                    controller: _userNameController,
+                    cursorColor: ColorManager.primary,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.userName,
+                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidUserName,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSize.s35),
+            Padding(
+              padding: const EdgeInsets.only(left: AppSize.s25),
+              child: Text(
+                AppStrings.email,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: AppSize.s25, right: AppSize.s28),
+              child: StreamBuilder<bool>(
+                stream: _viewModel.outIsEmailValid,
+                builder: (context, snapshot){
+                  return TextFormField(
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    cursorColor: ColorManager.primary,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.emailExample,
+                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidEmail,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSize.s35),
+            Padding(
+              padding: const EdgeInsets.only(left: AppSize.s25),
+              child: Text(
+                AppStrings.password,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            SizedBox(
+              height: AppSize.s300,
+              child: Stack(
+                alignment: AlignmentDirectional.topCenter,
+                children: [
+                  Container(
+                    height: AppSize.s300,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(ImageAssets.backgroundDown),
+                        fit: BoxFit.cover,
                       ),
-                      Text(
-                        AppStrings.login,
-                        style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: AppSize.s25, right: AppSize.s28),
+                        child: StreamBuilder<bool>(
+                          stream: _viewModel.outIsPasswordValid,
+                          builder: (context, snapshot){
+                            return StreamBuilder<bool>(
+                              stream: _viewModel.outIsPasswordVisible,
+                              builder: (context, visibleSnapshot){
+                                return TextFormField(
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  controller: _passwordController,
+                                  obscureText: (visibleSnapshot.data ?? true) ? true : false,
+                                  cursorColor: ColorManager.primary,
+                                  decoration:  InputDecoration(
+                                    hintText: AppStrings.password,
+                                    errorText: (snapshot.data ?? true) ? null : AppStrings.invalidPassword,
+                                    suffixIcon: IconButton(
+                                        onPressed: (){
+                                          _viewModel.changePasswordVisibility((visibleSnapshot.data ?? true));
+                                        },
+                                        icon: (visibleSnapshot.data ?? true) ?
+                                        Icon(Icons.visibility_off_outlined, color: ColorManager.grey,) :
+                                        Icon(Icons.visibility_outlined, color: ColorManager.grey,)
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: AppSize.s20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.byContinuing,
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                            InkWell(
+                              onTap: (){},
+                              child: Text(
+                                AppStrings.termOfService,
+                                style: Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: AppSize.s8),
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.and,
+                              style: Theme.of(context).textTheme.displaySmall,
+                            ),
+                            InkWell(
+                              onTap: (){},
+                              child: Text(
+                                AppStrings.privacyPolicy,
+                                style: Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: AppSize.s30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              width: AppSize.s353,
+                              height: AppSize.s67,
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    _viewModel.register();
+                                  },
+                                  child: const Text(
+                                    AppStrings.register,
+                                  ))),
+                        ],
+                      ),
+                      const SizedBox(height: AppSize.s25),
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.of(context).pop();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                AppStrings.alreadyHaveAnAccount,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                              Text(
+                                AppStrings.login,
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
