@@ -8,4 +8,16 @@ class ImageAssets{
   static const String logoOrangeSmall = "$imagePath/logo_orange_small.svg";
   static const String backgroundUp = "$imagePath/background_up.jpg";
   static const String backgroundDown = "$imagePath/background_down.jpg";
+  static const String shopBanner = "$imagePath/shop_banner.jpg";
+  static const String banana = "$imagePath/banana.png";
+  static const String pepper = "$imagePath/pepper.png";
+  static const String ginger = "$imagePath/ginger.png";
+  static const String beef = "$imagePath/beef.png";
+  static const String chicken = "$imagePath/chicken.png";
+  static const String mayonnaise = "$imagePath/mayonnaise.png";
+  static const String appleJuice = "$imagePath/apple_juice.png";
+  static const String pulses = "$imagePath/pulses.png";
+  static const String rice = "$imagePath/rice.png";
+  static const String beverages = "$imagePath/beverages.png";
+  static const String add = "$imagePath/add.svg";
 }

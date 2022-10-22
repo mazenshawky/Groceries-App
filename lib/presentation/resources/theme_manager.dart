@@ -9,6 +9,7 @@ ThemeData getApplicationTheme(){
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,
+    splashColor: ColorManager.lightPrimary,
 
     // app bar theme
     appBarTheme: AppBarTheme(
@@ -41,16 +42,18 @@ ThemeData getApplicationTheme(){
       headlineLarge: getSemiBoldStyle(fontSize: FontSize.s48, color: ColorManager.white),
       headlineMedium: getSemiBoldStyle(fontSize: FontSize.s26, color: ColorManager.black),
       headlineSmall: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.grey),
+      labelLarge: getSemiBoldStyle(fontSize: FontSize.s24, color: ColorManager.black),
       labelMedium: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.black),
       labelSmall: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.primary),
       titleMedium: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.lightWhite),
+      titleLarge: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.primary),
       titleSmall: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.grey),
+      bodyLarge: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.darkGrey),
       bodyMedium: getMediumStyle(fontSize: FontSize.s18, color: ColorManager.black),
       bodySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
+      displayLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
       displayMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
       displaySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
-      displayLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
-      bodyLarge: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.darkGrey),
     ),
 
     // input decoration theme(text form field)

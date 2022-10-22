@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppStrings.favourite,
   ];
 
-  var _title = 'Filters';
+  String? _title;
   var _currentIndex = 0;
 
   @override
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: ColorManager.white3,
         appBar: AppBar(
           title: Text(
-            _title,
+            _title!,
             style: Theme.of(context).textTheme.displayLarge,
           ),
         ),

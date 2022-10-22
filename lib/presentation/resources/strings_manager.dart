@@ -30,4 +30,18 @@ class AppStrings {
   static const cart = "Cart";
   static const favourite = "Favourite";
   static const account = "Account";
+  static const location = "Dhaka, Banassre";
+  static const searchStore = "Search Store";
+  static const exclusiveOffer = "Exclusive Offer";
+  static const seeAll = "See all";
+  static const price = "Price";
+  static const dollarSign = "\$";
+  static const bestSelling = "Best Selling";
+  static const groceries = "Groceries";
+  static const pulses = "Pulses";
+  static const rice = "Rice";
+  static const beverages = "Beverages";
+  static const image = "image";
+  static const color = "color";
+  static const title = "title";
 }
