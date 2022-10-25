@@ -5,6 +5,7 @@ import 'package:groceries_app/presentation/register/view/register_screen.dart';
 
 import '../../app/di.dart';
 import '../onboarding/view/onboarding_screen.dart';
+import '../product_details/view/product_details_screen.dart';
 import '../splash/splash_screen.dart';
 import 'strings_manager.dart';
 
@@ -13,7 +14,8 @@ class Routes{
   static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
-  static const String homeRoute = "/shop";
+  static const String homeRoute = "/home";
+  static const String productDetailsRoute = "/productDetails";
 }
 
 class RouteGenerator{
@@ -31,6 +33,8 @@ class RouteGenerator{
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case Routes.productDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const ProductDetailsScreen());
       default:
         return unDefinedRoute();
     }

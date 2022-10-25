@@ -20,4 +20,10 @@ class ImageAssets{
   static const String rice = "$imagePath/rice.png";
   static const String beverages = "$imagePath/beverages.png";
   static const String add = "$imagePath/add.svg";
+  static const String vector = "$imagePath/vector.png";
+  static const String addOutlined = "$imagePath/add_outlined.png";
+  static const String minusOutlined = "$imagePath/minus_outlined.png";
+  static const String plus = "$imagePath/plus.svg";
+  static const String minus = "$imagePath/minus.svg";
+  static const String stars = "$imagePath/stars.svg";
 }

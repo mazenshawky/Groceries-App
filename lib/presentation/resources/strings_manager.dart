@@ -44,4 +44,14 @@ class AppStrings {
   static const image = "image";
   static const color = "color";
   static const title = "title";
+  static const temp = "Natural Red Apple";
+  static const tempDescription = "1kg, Price";
+  static const tempCount = "1";
+  static const tempPrice = "\$4.99";
+  static const productDetail = "Product Detail";
+  static const tempDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.";
+  static const nutrition = "Nutrition";
+  static const tempWeight = "100gr";
+  static const review = "Review";
+  static const addToBasket = "Add To Basket";
 }
