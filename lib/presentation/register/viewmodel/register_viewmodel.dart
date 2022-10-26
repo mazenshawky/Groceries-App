@@ -9,6 +9,8 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
 
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
 
+  final StreamController _areAllInputsValidStreamController = StreamController<void>.broadcast();
+
   final StreamController _passwordVisibilityStreamController = StreamController<bool>.broadcast();
 
   final StreamController isUserRegisteredInSuccessfullyStreamController = StreamController<bool>.broadcast();
@@ -20,6 +22,7 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
     _userNameStreamController.close();
     _emailStreamController.close();
     _passwordStreamController.close();
+    _areAllInputsValidStreamController.close();
     _passwordVisibilityStreamController.close();
     isUserRegisteredInSuccessfullyStreamController.close();
   }
@@ -34,6 +37,9 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
   Sink get inputPassword => _passwordStreamController.sink;
 
   @override
+  Sink get inputAreAllInputsValid => _areAllInputsValidStreamController.sink;
+
+  @override
   Sink get inputChangePasswordVisibility => _passwordVisibilityStreamController.sink;
 
   @override
@@ -45,18 +51,21 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
   setUserName(String userName) {
     _userNameStreamController.add(userName);
     registerObject = registerObject.copyWith(userName: userName);
+    inputAreAllInputsValid.add(null);
   }
 
   @override
   setEmail(String email) {
     _emailStreamController.add(email);
     registerObject = registerObject.copyWith(email: email);
+    inputAreAllInputsValid.add(null);
   }
 
   @override
   setPassword(String password) {
     _passwordStreamController.add(password);
     registerObject = registerObject.copyWith(password: password);
+    inputAreAllInputsValid.add(null);
   }
 
   @override
@@ -75,6 +84,9 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
   Stream<bool> get outIsPasswordValid => _passwordStreamController.stream.map((password) => _isPasswordValid(password));
 
   @override
+  Stream<bool> get outAreAllInputsValid => _areAllInputsValidStreamController.stream.map((_) => _areAllInputsValid());
+
+  @override
   Stream<bool> get outIsPasswordVisible => _passwordVisibilityStreamController.stream.map((state) => state);
 
   bool _isUserNameValid(String userName){
@@ -89,6 +101,10 @@ class RegisterViewModel extends RegisterViewModelInputs with RegisterViewModelOu
 
   bool _isPasswordValid(String password){
     return password.length >= 6;
+  }
+
+  bool _areAllInputsValid(){
+    return _isUserNameValid(registerObject.userName) && _isEmailValid(registerObject.email) && _isPasswordValid(registerObject.password);
   }
 }
 
@@ -109,6 +125,8 @@ abstract class RegisterViewModelInputs{
 
   Sink get inputPassword;
 
+  Sink get inputAreAllInputsValid;
+
   Sink get inputChangePasswordVisibility;
 }
 
@@ -118,6 +136,8 @@ abstract class RegisterViewModelOutputs{
   Stream<bool> get outIsEmailValid;
 
   Stream<bool> get outIsPasswordValid;
+
+  Stream<bool> get outAreAllInputsValid;
 
   Stream<bool> get outIsPasswordVisible;
 }

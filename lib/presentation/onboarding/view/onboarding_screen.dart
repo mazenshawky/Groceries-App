@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:groceries_app/app/app_prefs.dart';
 import 'package:groceries_app/presentation/resources/assets_manager.dart';
 import 'package:groceries_app/presentation/resources/strings_manager.dart';
 import 'package:groceries_app/presentation/resources/values_manager.dart';
 
+import '../../../app/di.dart';
 import '../../resources/routes_manager.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends StatefulWidget {
+   const OnBoardingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+
+  @override
+  void initState() {
+    _appPreferences.setOnBoardingScreenViewed();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,5 +67,10 @@ class OnBoardingScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

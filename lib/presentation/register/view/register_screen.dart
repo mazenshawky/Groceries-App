@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -19,6 +20,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -32,6 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _viewModel.isUserRegisteredInSuccessfullyStreamController.stream.listen((isRegistered) {
       if(isRegistered){
         SchedulerBinding.instance.addPostFrameCallback((_) {
+          _appPreferences.setUserLoggedIn();
           Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
         });
       }
@@ -249,16 +252,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                              width: AppSize.s353,
-                              height: AppSize.s67,
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    _viewModel.register();
-                                  },
-                                  child: const Text(
-                                    AppStrings.register,
-                                  ))),
+                          StreamBuilder<bool>(
+                              stream: _viewModel.outAreAllInputsValid,
+                              builder: (context, snapshot) {
+                                return SizedBox(
+                                    width: AppSize.s353,
+                                    height: AppSize.s67,
+                                    child: ElevatedButton(
+                                        onPressed:
+                                        (snapshot.data ?? false)
+                                            ? (){
+                                          _viewModel.register();
+                                        }
+                                            : null,
+                                        child: const Text(
+                                          AppStrings.register,
+                                        )));
+                              }
+                          ),
                         ],
                       ),
                       const SizedBox(height: AppSize.s25),

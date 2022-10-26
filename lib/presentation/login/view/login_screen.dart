@@ -5,6 +5,7 @@ import 'package:groceries_app/presentation/login/viewmodel/login_viewmodel.dart'
 import 'package:groceries_app/presentation/resources/assets_manager.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
 
+import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
@@ -19,6 +20,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -30,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isLoggedIn) {
       if(isLoggedIn){
         SchedulerBinding.instance.addPostFrameCallback((_) {
+          _appPreferences.setUserLoggedIn();
           Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
         });
       }
@@ -195,16 +198,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                              width: AppSize.s353,
-                              height: AppSize.s67,
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    _viewModel.login();
-                                  },
-                                  child: const Text(
-                                    AppStrings.loginButton,
-                                  ))),
+                          StreamBuilder<bool>(
+                            stream: _viewModel.outAreAllInputsValid,
+                            builder: (context, snapshot) {
+                              return SizedBox(
+                                  width: AppSize.s353,
+                                  height: AppSize.s67,
+                                  child: ElevatedButton(
+                                      onPressed:
+                                      (snapshot.data ?? false)
+                                          ? (){
+                                        _viewModel.login();
+                                      }
+                                          : null,
+                                      child: const Text(
+                                        AppStrings.loginButton,
+                                      )));
+                            }
+                          ),
                         ],
                       ),
                       const SizedBox(height: AppSize.s25),

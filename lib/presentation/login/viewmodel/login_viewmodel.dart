@@ -7,6 +7,8 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
 
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
 
+  final StreamController _areAllInputsValidStreamController = StreamController<void>.broadcast();
+
   final StreamController _passwordVisibilityStreamController = StreamController<bool>.broadcast();
 
   final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>.broadcast();
@@ -17,6 +19,7 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   void dispose(){
     _emailStreamController.close();
     _passwordStreamController.close();
+    _areAllInputsValidStreamController.close();
     _passwordVisibilityStreamController.close();
     isUserLoggedInSuccessfullyStreamController.close();
   }
@@ -26,6 +29,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
 
   @override
   Sink get inputPassword => _passwordStreamController.sink;
+
+  @override
+  Sink get inputAreAllInputsValid => _areAllInputsValidStreamController.sink;
 
   @override
   Sink get inputChangePasswordVisibility => _passwordVisibilityStreamController.sink;
@@ -39,12 +45,14 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   setEmail(String email) {
     _emailStreamController.add(email);
     loginObject = loginObject.copyWith(email: email);
+    inputAreAllInputsValid.add(null);
   }
 
   @override
   setPassword(String password) {
     _passwordStreamController.add(password);
     loginObject = loginObject.copyWith(password: password);
+    inputAreAllInputsValid.add(null);
   }
 
   @override
@@ -60,6 +68,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   Stream<bool> get outIsPasswordValid => _passwordStreamController.stream.map((password) => _isPasswordValid(password));
 
   @override
+  Stream<bool> get outAreAllInputsValid => _areAllInputsValidStreamController.stream.map((_) => _areAllInputsValid());
+
+  @override
   Stream<bool> get outIsPasswordVisible => _passwordVisibilityStreamController.stream.map((state) => state);
 
   bool _isEmailValid(String email){
@@ -70,6 +81,10 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
 
   bool _isPasswordValid(String password){
     return password.length >= 6;
+  }
+
+  bool _areAllInputsValid(){
+    return _isEmailValid(loginObject.email) && _isPasswordValid(loginObject.password);
   }
 }
 
@@ -86,6 +101,8 @@ abstract class LoginViewModelInputs{
 
   Sink get inputPassword;
 
+  Sink get inputAreAllInputsValid;
+
   Sink get inputChangePasswordVisibility;
 }
 
@@ -93,6 +110,8 @@ abstract class LoginViewModelOutputs{
   Stream<bool> get outIsEmailValid;
 
   Stream<bool> get outIsPasswordValid;
+
+  Stream<bool> get outAreAllInputsValid;
 
   Stream<bool> get outIsPasswordVisible;
 }
