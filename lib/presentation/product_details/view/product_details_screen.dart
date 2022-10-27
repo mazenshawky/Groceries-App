@@ -21,7 +21,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.white3,
+      backgroundColor: ColorManager.white,
       appBar: AppBar(
         backgroundColor: ColorManager.darkLightGrey,
         leading: Padding(
@@ -136,7 +136,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                   const SizedBox(height: AppSize.s30),
                   Divider(
-                    color: ColorManager.white4,
+                    color: ColorManager.white5,
+                    thickness: AppSize.s1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +155,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                   if(isDetail) const SizedBox(height: AppSize.s20),
                   Divider(
-                    color: ColorManager.white4,
+                    color: ColorManager.white5,
+                    thickness: AppSize.s1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,7 +185,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ],
                   ),
                   Divider(
-                    color: ColorManager.white4,
+                    color: ColorManager.white5,
+                    thickness: AppSize.s1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -26,4 +26,10 @@ class ImageAssets{
   static const String plus = "$imagePath/plus.svg";
   static const String minus = "$imagePath/minus.svg";
   static const String stars = "$imagePath/stars.svg";
+  static const String location = "$imagePath/location.svg";
+  static const String shop = "$imagePath/shop.svg";
+  static const String explore = "$imagePath/explore.svg";
+  static const String cart = "$imagePath/cart.svg";
+  static const String favourite = "$imagePath/favourite.svg";
+  static const String account = "$imagePath/account.svg";
 }

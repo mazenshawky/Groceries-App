@@ -7,6 +7,7 @@ class ColorManager{
   static Color white2 = const Color(0xffFFF9FF);
   static Color white3 = const Color(0xffFCFCFC);
   static Color white4 = const Color(0xffE2E2E2);
+  static Color white5 = const Color(0xb3E2E2E2);
   static Color lightWhite = const Color(0xb3FCFCFC);
   static Color black = const Color(0xff181725);
   static Color darkBlack = const Color(0xff181B19);
@@ -21,4 +22,5 @@ class ColorManager{
   static Color lightGreen = const Color(0x1a53B175);
   static Color lightPurple = const Color(0x40D3B0E0);
   static Color error = const Color(0xffe61f34); // red color
+  static Color shadow = const Color(0x80E6EBF3);
 }

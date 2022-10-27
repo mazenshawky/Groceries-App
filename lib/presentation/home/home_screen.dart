@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:groceries_app/presentation/home/pages/account/view/account_page.dart';
 import 'package:groceries_app/presentation/home/pages/cart/view/cart_page.dart';
 import 'package:groceries_app/presentation/home/pages/explore/view/explore_page.dart';
@@ -7,6 +8,7 @@ import 'package:groceries_app/presentation/home/pages/favourite/view/favourite_p
 import 'package:groceries_app/presentation/home/pages/shop/view/shop_page.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
 
+import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 import '../resources/values_manager.dart';
 
@@ -40,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ConditionalBuilder(
       condition: _currentIndex == 1 || _currentIndex == 2 || _currentIndex == 3,
       builder: (context) => Scaffold(
-        backgroundColor: ColorManager.white3,
+        backgroundColor: ColorManager.white,
         appBar: AppBar(
           title: Text(
             _title!,
@@ -48,39 +50,107 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: pages[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: true,
-          elevation: AppSize.s0,
-          selectedItemColor: ColorManager.primary,
-          unselectedItemColor: ColorManager.black,
-          currentIndex: _currentIndex,
-          onTap: onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: AppStrings.shop),
-            BottomNavigationBarItem(icon: Icon(Icons.manage_search), label: AppStrings.explore),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: AppStrings.cart),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_rounded), label: AppStrings.favourite),
-            BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined), label: AppStrings.account),
-          ],
+        bottomNavigationBar: Container(
+          height: AppSize.s82,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(AppSize.s37), topLeft: Radius.circular(AppSize.s37)),
+            boxShadow: [
+              BoxShadow(color: ColorManager.shadow, spreadRadius: AppSize.s5, blurRadius: AppSize.s10, offset: const Offset(AppSize.s0, AppSize.s_12)),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppSize.s15), topRight: Radius.circular(AppSize.s15)),
+            child: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              onTap: onTap,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.shop, color: _currentIndex == 0 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.shop),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.explore, color: _currentIndex == 1 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.explore),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.cart, color: _currentIndex == 2 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.cart),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.favourite, color: _currentIndex == 3 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.favourite),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.account, color: _currentIndex == 4 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.account),
+              ],
+            ),
+          ),
         ),
       ),
       fallback: (context) => Scaffold(
-        backgroundColor: ColorManager.white3,
+        backgroundColor: ColorManager.white,
         body: pages[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: true,
-          elevation: AppSize.s0,
-          selectedItemColor: ColorManager.primary,
-          unselectedItemColor: ColorManager.black,
-          currentIndex: _currentIndex,
-          onTap: onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: AppStrings.shop),
-            BottomNavigationBarItem(icon: Icon(Icons.manage_search), label: AppStrings.explore),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined), label: AppStrings.cart),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_rounded), label: AppStrings.favourite),
-            BottomNavigationBarItem(icon: Icon(Icons.person_outline_outlined), label: AppStrings.account),
-          ],
+        bottomNavigationBar: Container(
+          height: AppSize.s82,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(AppSize.s15), topLeft: Radius.circular(AppSize.s15)),
+            boxShadow: [
+              BoxShadow(color: ColorManager.shadow, spreadRadius: AppSize.s5, blurRadius: AppSize.s10, offset: const Offset(AppSize.s0, AppSize.s_12)),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppSize.s15), topRight: Radius.circular(AppSize.s15)),
+            child: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              onTap: onTap,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.shop, color: _currentIndex == 0 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.shop),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.explore, color: _currentIndex == 1 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.explore),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.cart, color: _currentIndex == 2 ? ColorManager.primary : ColorManager.black),
+                   ),
+                    label: AppStrings.cart),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.favourite, color: _currentIndex == 3 ? ColorManager.primary : ColorManager.black),
+                   ),
+                    label: AppStrings.favourite),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
+                      child: SvgPicture.asset(ImageAssets.account, color: _currentIndex == 4 ? ColorManager.primary : ColorManager.black),
+                    ),
+                    label: AppStrings.account),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -92,7 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
       if(_currentIndex == 1) _title = titles[0];
       else if(_currentIndex == 2) _title = titles[1];
       else if(_currentIndex == 3) _title = titles[2];
-
     });
   }
 }

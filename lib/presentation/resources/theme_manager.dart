@@ -14,8 +14,20 @@ ThemeData getApplicationTheme(){
     // app bar theme
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      color: ColorManager.white3,
+      color: ColorManager.white,
       elevation: AppSize.s0,
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: ColorManager.white,
+      showUnselectedLabels: true,
+      elevation: AppSize.s0,
+      selectedItemColor: ColorManager.primary,
+      unselectedItemColor: ColorManager.black,
+      selectedLabelStyle: getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.primary),
+      unselectedLabelStyle: getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.black),
+
     ),
 
     // button theme

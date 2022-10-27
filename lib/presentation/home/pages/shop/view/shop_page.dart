@@ -119,11 +119,8 @@ class _ShopPageState extends State<ShopPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.location_on,
-              color: ColorManager.darkGrey,
-            ),
-            const SizedBox(width: AppSize.s5),
+            SvgPicture.asset(ImageAssets.location, color: ColorManager.darkGrey),
+            const SizedBox(width: AppSize.s8),
             Text(
               AppStrings.location,
               style: Theme.of(context).textTheme.bodyLarge,
@@ -272,8 +269,8 @@ class _ShopPageState extends State<ShopPage> {
           Navigator.of(context).pushNamed(Routes.productDetailsRoute);
         },
         child: Card(
-          color: ColorManager.white3,
-          shadowColor: ColorManager.white3,
+          color: ColorManager.white,
+          shadowColor: ColorManager.white,
           elevation: AppSize.s0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.s18),
