@@ -16,7 +16,7 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  bool isDetail = false;
+  bool isDetail = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +38,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: AppPadding.p25),
+            padding: const EdgeInsets.only(right: AppPadding.p15),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.ios_share,
-                color: ColorManager.black,
-              ),
+              icon: SvgPicture.asset(ImageAssets.share, color: ColorManager.black),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
+        reverse: true,
         child: Column(
           children: [
             Container(
@@ -106,7 +104,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     children: [
                       Row(
                         children: [
-                          InkWell(onTap: (){},child: SvgPicture.asset(ImageAssets.minus)),
+                          InkWell(onTap: (){}, child: SvgPicture.asset(ImageAssets.minus)),
                           Padding(
                             padding: const EdgeInsets.only(left: AppPadding.p20, right: AppPadding.p20),
                             child: Container(
@@ -116,15 +114,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   border: Border.all(color: ColorManager.white4),
                                   borderRadius: BorderRadius.circular(AppSize.s18),
                                 ),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Center(
-                                      child: Text(AppStrings.tempCount, style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.black),)
-                                  ),
+                                child: Center(
+                                    child: Text(AppStrings.tempCount, style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.black),)
                                 )
                             ),
                           ),
-                          InkWell(onTap: (){},child: SvgPicture.asset(ImageAssets.plus)),
+                          InkWell(onTap: (){}, child: SvgPicture.asset(ImageAssets.plus)),
                         ],
                       ),
                       Text(
@@ -172,11 +167,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 color: ColorManager.grey2,
                                 borderRadius: BorderRadius.circular(AppSize.s5),
                               ),
-                              child: InkWell(
-                                onTap: () {},
-                                child: Center(
-                                    child: Text(AppStrings.tempWeight, style: getSemiBoldStyle(fontSize: FontSize.s9, color: ColorManager.grey),)
-                                ),
+                              child: Center(
+                                  child: Text(AppStrings.tempWeight, style: getSemiBoldStyle(fontSize: FontSize.s9, color: ColorManager.grey),)
                               )
                           ),
                           IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios)),
@@ -205,7 +197,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSize.s10),
                   SizedBox(
                       width: AppSize.s353,
                       height: AppSize.s67,
