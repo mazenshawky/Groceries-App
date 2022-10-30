@@ -43,10 +43,29 @@ class _HomeScreenState extends State<HomeScreen> {
       condition: _currentIndex == 1 || _currentIndex == 2 || _currentIndex == 3,
       builder: (context) => Scaffold(
         backgroundColor: ColorManager.white,
-        appBar: AppBar(
-          title: Text(
-            _title!,
-            style: Theme.of(context).textTheme.displayLarge,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 80),
+          child: ConditionalBuilder(
+            condition: _currentIndex != 1,
+            builder: (context) => AppBar(
+              title: Text(
+                _title!,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              bottom: PreferredSize(
+                preferredSize: const Size(double.infinity, 50),
+                child: Divider(
+                  thickness: 1,
+                  color: ColorManager.white4,
+                ),
+              ),
+            ),
+            fallback: (context) => AppBar(
+                title: Text(
+                _title!,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+            ),
           ),
         ),
         body: pages[_currentIndex],

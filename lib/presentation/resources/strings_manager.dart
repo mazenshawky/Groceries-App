@@ -54,4 +54,8 @@ class AppStrings {
   static const tempWeight = "100gr";
   static const review = "Review";
   static const addToBasket = "Add To Basket";
+  static const goToCheckout = "Go to Checkout";
+  static const tempTotal = "\$12.96";
+  static const addAllToCart = "Add All To Cart";
+  static const logOut = "Log Out";
 }

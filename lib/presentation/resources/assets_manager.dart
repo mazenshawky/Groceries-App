@@ -32,4 +32,14 @@ class ImageAssets{
   static const String cart = "$imagePath/cart.svg";
   static const String favourite = "$imagePath/favourite.svg";
   static const String account = "$imagePath/account.svg";
+  static const String share = "$imagePath/share.svg";
+  static const String banana2 = "$imagePath/banana2.png";
+  static const String pepper2 = "$imagePath/pepper2.png";
+  static const String ginger2 = "$imagePath/ginger2.png";
+  static const String egg = "$imagePath/egg.png";
+  static const String pepsi = "$imagePath/pepsi.png";
+  static const String coke = "$imagePath/coke.png";
+  static const String cocaCola = "$imagePath/coca_cola.png";
+  static const String sprite = "$imagePath/sprite.png";
+  static const String appleJuice2 = "$imagePath/apple_juice.png";
 }
