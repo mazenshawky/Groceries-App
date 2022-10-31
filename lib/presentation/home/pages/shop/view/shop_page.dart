@@ -105,7 +105,6 @@ class _ShopPageState extends State<ShopPage> {
     return Padding(
       padding: const EdgeInsets.only(top: AppPadding.p58),
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: _getContentWidget(),
       ),
     );

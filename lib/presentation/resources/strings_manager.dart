@@ -58,4 +58,14 @@ class AppStrings {
   static const tempTotal = "\$12.96";
   static const addAllToCart = "Add All To Cart";
   static const logOut = "Log Out";
+  static const name = "Afsar Hossen";
+  static const emailAddress = "Imshuvo97@gmail.com";
+  static const orders = "Orders";
+  static const myDetails = "My Details";
+  static const deliveryAddress = "Delivery Address";
+  static const paymentMethods = "Payment Methods";
+  static const promoCord = "Promo Cord";
+  static const notifications = "Notifications";
+  static const help = "Help";
+  static const about = "About";
 }

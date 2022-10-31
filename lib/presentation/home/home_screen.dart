@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ExplorePage(),
     CartPage(),
     FavouritePage(),
-    AccountPage(),
+    const AccountPage(),
   ];
 
   List<String> titles = [
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context) => Scaffold(
         backgroundColor: ColorManager.white,
         appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 80),
+          preferredSize: const Size(double.infinity, AppSize.s80),
           child: ConditionalBuilder(
             condition: _currentIndex != 1,
             builder: (context) => AppBar(
@@ -53,9 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               bottom: PreferredSize(
-                preferredSize: const Size(double.infinity, 50),
+                preferredSize: const Size(double.infinity, AppSize.s50),
                 child: Divider(
-                  thickness: 1,
+                  thickness: AppSize.s1,
                   color: ColorManager.white4,
                 ),
               ),

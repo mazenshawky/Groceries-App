@@ -42,4 +42,13 @@ class ImageAssets{
   static const String cocaCola = "$imagePath/coca_cola.png";
   static const String sprite = "$imagePath/sprite.png";
   static const String appleJuice2 = "$imagePath/apple_juice.png";
+  static const String accountImage = "$imagePath/account_image.png";
+  static const String orders = "$imagePath/orders.svg";
+  static const String myDetails = "$imagePath/my_details.svg";
+  static const String deliveryAddress = "$imagePath/delivery_address.svg";
+  static const String payment = "$imagePath/payment.svg";
+  static const String promoCord = "$imagePath/promo_cord.svg";
+  static const String notification = "$imagePath/notification.svg";
+  static const String help = "$imagePath/help.svg";
+  static const String about = "$imagePath/about.svg";
 }
