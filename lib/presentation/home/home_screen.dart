@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ExplorePage(),
     CartPage(),
     FavouritePage(),
-    const AccountPage(),
+    AccountPage(),
   ];
 
   List<String> titles = [
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context) => Scaffold(
         backgroundColor: ColorManager.white,
         appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, AppSize.s80),
+          preferredSize: _currentIndex != 1 ? const Size(double.infinity, AppSize.s80) : const Size(double.infinity, AppSize.s67),
           child: ConditionalBuilder(
             condition: _currentIndex != 1,
             builder: (context) => AppBar(

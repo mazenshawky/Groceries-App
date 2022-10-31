@@ -68,4 +68,9 @@ class AppStrings {
   static const notifications = "Notifications";
   static const help = "Help";
   static const about = "About";
+  static const freshFruits = "Fresh Fruits\n& Vegetable";
+  static const cookingOil = "Cooking Oil\n& Ghee";
+  static const meat = "Meat & Fish";
+  static const snacks = "Bakery & Snacks";
+  static const dairy = "Dairy & Eggs";
 }

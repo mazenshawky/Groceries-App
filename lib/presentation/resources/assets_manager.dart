@@ -51,4 +51,9 @@ class ImageAssets{
   static const String notification = "$imagePath/notification.svg";
   static const String help = "$imagePath/help.svg";
   static const String about = "$imagePath/about.svg";
+  static const String fruits = "$imagePath/fruits.png";
+  static const String oils = "$imagePath/oils.png";
+  static const String meat = "$imagePath/meat.png";
+  static const String snacks = "$imagePath/snacks.png";
+  static const String dairy = "$imagePath/dairy.png";
 }

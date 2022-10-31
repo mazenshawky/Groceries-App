@@ -23,7 +23,7 @@ class AccountItem extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: SizedBox(
-              height: AppSize.s60,
+              height: AppSize.s45,
               child: Row(
                 children: [
                   SvgPicture.asset(icon),

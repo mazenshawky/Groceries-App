@@ -21,8 +21,17 @@ class ColorManager{
   static Color lightLightGrey = const Color(0xffE2E2E2);
   static Color darkLightGrey = const Color(0xffF2F3F2);
   static Color lightOrange = const Color(0x1aF8A44C);
+  static Color lightOrange2 = const Color(0xb3F8A44C);
   static Color lightGreen = const Color(0x1a53B175);
+  static Color lightGreen2 = const Color(0xb353B175);
   static Color lightPurple = const Color(0x40D3B0E0);
+  static Color lightPurple2 = const Color(0xffD3B0E0);
+  static Color lightRed= const Color(0x40F7A593);
+  static Color lightRed2 = const Color(0xffF7A593);
+  static Color lightYellow= const Color(0x40FDE598);
+  static Color lightYellow2 = const Color(0xffFDE598);
+  static Color lightPink = const Color(0x26D73B77);
+  static Color lightPink2 = const Color(0x80D73B77);
   static Color error = const Color(0xffe61f34); // red color
   static Color shadow = const Color(0x80E6EBF3);
 }

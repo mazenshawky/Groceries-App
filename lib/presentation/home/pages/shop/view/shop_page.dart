@@ -178,7 +178,7 @@ class _ShopPageState extends State<ShopPage> {
               scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => buildCard(exclusiveList[index]),
                 separatorBuilder: (context, index) => const SizedBox(width: AppSize.s15),
-                itemCount: 3,
+                itemCount: exclusiveList.length,
             ),
           ),
         ),
@@ -194,7 +194,7 @@ class _ShopPageState extends State<ShopPage> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => buildCard(bestSellingList[index]),
               separatorBuilder: (context, index) => const SizedBox(width: AppSize.s15),
-              itemCount: 3,
+              itemCount: bestSellingList.length,
             ),
           ),
         ),
@@ -212,7 +212,7 @@ class _ShopPageState extends State<ShopPage> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => buildCategory(categories[index]),
               separatorBuilder: (context, index) => const SizedBox(width: AppSize.s10),
-              itemCount: 3,
+              itemCount: categories.length,
             ),
           ),
         ),
@@ -226,7 +226,7 @@ class _ShopPageState extends State<ShopPage> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => buildCard(groceriesList[index]),
               separatorBuilder: (context, index) => const SizedBox(width: AppSize.s15),
-              itemCount: 3,
+              itemCount: groceriesList.length,
             ),
           ),
         ),
@@ -267,76 +267,68 @@ class _ShopPageState extends State<ShopPage> {
         onTap: (){
           Navigator.of(context).pushNamed(Routes.productDetailsRoute);
         },
-        child: Card(
-          color: ColorManager.white,
-          shadowColor: ColorManager.white,
-          elevation: AppSize.s0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSize.s18),
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: AppPadding.p25),
-                child: Container(
-                  width: AppSize.s100,
-                  height: AppSize.s80,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(map[AppStrings.image]),
-                      // fit: BoxFit.cover,
-                    ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: AppPadding.p25),
+              child: Container(
+                width: AppSize.s100,
+                height: AppSize.s80,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(map[AppStrings.image]),
+                    // fit: BoxFit.cover,
                   ),
                 ),
               ),
-              const SizedBox(height: AppSize.s25),
-              Padding(
-                padding: const EdgeInsets.only(left: AppPadding.p15, right: AppPadding.p14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                              map['item'],
-                              style: getBoldStyle(fontSize: FontSize.s16, color: ColorManager.black),
-                            ),
+            ),
+            const SizedBox(height: AppSize.s25),
+            Padding(
+              padding: const EdgeInsets.only(left: AppPadding.p15, right: AppPadding.p14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text(
+                            map['item'],
+                            style: getBoldStyle(fontSize: FontSize.s16, color: ColorManager.black),
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSize.s5),
-                    Text(
-                      '${map['amount']}${AppStrings.price}',
-                      style: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
-                      textAlign: TextAlign.start,
-                    ),
-                    const SizedBox(height: AppSize.s10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${AppStrings.dollarSign}${map['price']}',
-                          style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.black),
-                        ),
-                        InkWell(
-                          splashColor: Colors.teal,
-                          onTap: (){
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSize.s5),
+                  Text(
+                    '${map['amount']}${AppStrings.price}',
+                    style: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
+                    textAlign: TextAlign.start,
+                  ),
+                  const SizedBox(height: AppSize.s10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${AppStrings.dollarSign}${map['price']}',
+                        style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.black),
+                      ),
+                      InkWell(
+                        splashColor: Colors.teal,
+                        onTap: (){
 
-                          },
-                          child: SvgPicture.asset(ImageAssets.add),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                        },
+                        child: SvgPicture.asset(ImageAssets.add),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
