@@ -17,6 +17,13 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   final TextEditingController _searchController = TextEditingController();
 
+  Map<String, List<dynamic>> exploreMap = {
+    'titles' : [AppStrings.freshFruits, AppStrings.cookingOil, AppStrings.meat, AppStrings.snacks, AppStrings.dairy, AppStrings.beverages],
+    'images' : [ImageAssets.fruits, ImageAssets.oils, ImageAssets.meat, ImageAssets.snacks, ImageAssets.dairy, ImageAssets.beverages],
+    'colors' : [ColorManager.lightGreen, ColorManager.lightOrange, ColorManager.lightRed, ColorManager.lightPurple, ColorManager.lightYellow, ColorManager.lightPink],
+    'borderColors' : [ColorManager.lightGreen2, ColorManager.lightOrange2, ColorManager.lightRed2, ColorManager.lightPurple2, ColorManager.lightYellow2, ColorManager.lightPink2],
+  };
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -49,29 +56,19 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ),
             const SizedBox(height: AppSize.s15),
-            Row(
-              children: [
-                buildCard(title: AppStrings.freshFruits, image: ImageAssets.fruits, color: ColorManager.lightGreen, borderColor: ColorManager.lightGreen2),
-                const SizedBox(width: AppSize.s15),
-                buildCard(title: AppStrings.cookingOil, image: ImageAssets.oils, color: ColorManager.lightOrange, borderColor: ColorManager.lightOrange2),
-              ],
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              mainAxisSpacing: AppSize.s15,
+              crossAxisSpacing: AppSize.s15,
+              childAspectRatio: 1 / 1.1,
+              children: List.generate(
+                exploreMap['titles']!.length,
+                    (index) => buildCard(title: exploreMap['titles']![index], image: exploreMap['images']![index], color: exploreMap['colors']![index], borderColor: exploreMap['borderColors']![index]),
+              ),
             ),
             const SizedBox(height: AppSize.s15),
-            Row(
-              children: [
-                buildCard(title: AppStrings.meat, image: ImageAssets.meat, color: ColorManager.lightRed, borderColor: ColorManager.lightRed2),
-                const SizedBox(width: AppSize.s15),
-                buildCard(title: AppStrings.snacks, image: ImageAssets.snacks, color: ColorManager.lightPurple, borderColor: ColorManager.lightPurple2),
-              ],
-            ),
-            const SizedBox(height: AppSize.s15),
-            Row(
-              children: [
-                buildCard(title: AppStrings.dairy, image: ImageAssets.dairy, color: ColorManager.lightYellow, borderColor: ColorManager.lightYellow2),
-                const SizedBox(width: AppSize.s15),
-                buildCard(title: AppStrings.beverages, image: ImageAssets.beverages, color: ColorManager.lightPink, borderColor: ColorManager.lightPink2),
-              ],
-            ),
           ],
         ),
       ),
@@ -84,43 +81,41 @@ class _ExplorePageState extends State<ExplorePage> {
     required Color color,
     required Color borderColor
   }){
-    return Expanded(
-      child: Container(
-        height: AppSize.s189,
-        width: AppSize.s173,
-        decoration: BoxDecoration(
-          color: color,
-          border: Border.all(color: borderColor),
-          borderRadius: BorderRadius.circular(AppSize.s18),
-        ),
-        child: InkWell(
-          onTap: (){},
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: AppPadding.p25),
-                child: Container(
-                  width: AppSize.s100,
-                  height: AppSize.s80,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(image),
-                      // fit: BoxFit.cover,
-                    ),
+    return Container(
+      height: AppSize.s189,
+      width: AppSize.s173,
+      decoration: BoxDecoration(
+        color: color,
+        border: Border.all(color: borderColor),
+        borderRadius: BorderRadius.circular(AppSize.s18),
+      ),
+      child: InkWell(
+        onTap: (){},
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: AppPadding.p25),
+              child: Container(
+                width: AppSize.s100,
+                height: AppSize.s80,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(image),
+                    // fit: BoxFit.cover,
                   ),
                 ),
               ),
-              const SizedBox(height: AppSize.s25),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p25),
-                child: Text(
-                  title,
-                  style: getBoldStyle(fontSize: FontSize.s16, color: ColorManager.black),
-                ),
+            ),
+            const SizedBox(height: AppSize.s25),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p25),
+              child: Text(
+                title,
+                style: getBoldStyle(fontSize: FontSize.s16, color: ColorManager.black),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
