@@ -47,6 +47,10 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Divider(
+          thickness: AppSize.s1,
+          color: ColorManager.white4,
+        ),
         Expanded(
           child: ListView.separated(
               itemBuilder: (context, index) => buildCartItem(cartList[index], index),

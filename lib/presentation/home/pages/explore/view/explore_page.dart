@@ -31,6 +31,7 @@ class _ExplorePageState extends State<ExplorePage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height: AppSize.s15),
             TextFormField(
               style: Theme.of(context).textTheme.labelMedium,
               keyboardType: TextInputType.text,
