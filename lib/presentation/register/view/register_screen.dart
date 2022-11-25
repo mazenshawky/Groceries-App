@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:groceries_app/presentation/components/stacked_carrot_widget.dart';
 
 import '../../../app/app_prefs.dart';

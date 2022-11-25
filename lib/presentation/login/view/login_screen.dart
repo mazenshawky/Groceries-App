@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:groceries_app/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:groceries_app/presentation/resources/assets_manager.dart';
 import 'package:groceries_app/presentation/resources/color_manager.dart';
