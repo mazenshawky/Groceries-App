@@ -27,7 +27,10 @@ class _AccountPageState extends State<AccountPage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: AppPadding.p25, bottom: AppPadding.p20, top: AppPadding.p70),
+            padding: const EdgeInsets.only(
+                left: AppPadding.p25,
+                bottom: AppPadding.p20,
+                top: AppPadding.p70),
             child: Row(
               children: [
                 Container(
@@ -36,35 +39,40 @@ class _AccountPageState extends State<AccountPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s27),
                       image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(ImageAssets.accountImage),
-                      )
-                  ),
+                        fit: BoxFit.cover,
+                        image: AssetImage(ImageAssets.accountImage),
+                      )),
                 ),
                 Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: AppPadding.p20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                AppStrings.name,
-                                style: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
-                              ),
-                              const SizedBox(width: AppSize.s10),
-                              InkWell(onTap: (){}, child: Icon(Icons.edit_outlined, color: ColorManager.primary))
-                            ],
-                          ),
-                          const SizedBox(height: AppSize.s3),
-                          Text(
-                            AppStrings.emailAddress,
-                            style: getRegularStyle(fontSize: FontSize.s16, color: ColorManager.grey),
-                          ),
-                        ],
-                      ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: AppPadding.p20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              AppStrings.name,
+                              style: getBoldStyle(
+                                  fontSize: FontSize.s20,
+                                  color: ColorManager.black),
+                            ),
+                            const SizedBox(width: AppSize.s10),
+                            InkWell(
+                                onTap: () {},
+                                child: Icon(Icons.edit_outlined,
+                                    color: ColorManager.primary))
+                          ],
+                        ),
+                        const SizedBox(height: AppSize.s3),
+                        Text(
+                          AppStrings.emailAddress,
+                          style: getRegularStyle(
+                              fontSize: FontSize.s16, color: ColorManager.grey),
+                        ),
+                      ],
                     ),
+                  ),
                 ),
               ],
             ),
@@ -73,14 +81,38 @@ class _AccountPageState extends State<AccountPage> {
             thickness: AppSize.s1,
             color: ColorManager.white4,
           ),
-          AccountItem(title: AppStrings.orders, icon: ImageAssets.orders, onTap: () => onItemPressed(context, index: 0)),
-          AccountItem(title: AppStrings.myDetails, icon: ImageAssets.myDetails, onTap: () => onItemPressed(context, index: 1)),
-          AccountItem(title: AppStrings.deliveryAddress, icon: ImageAssets.deliveryAddress, onTap: () => onItemPressed(context, index: 2)),
-          AccountItem(title: AppStrings.paymentMethods, icon: ImageAssets.payment, onTap: () => onItemPressed(context, index: 3)),
-          AccountItem(title: AppStrings.promoCord, icon: ImageAssets.promoCord, onTap: () => onItemPressed(context, index: 4)),
-          AccountItem(title: AppStrings.notifications, icon: ImageAssets.notification, onTap: () => onItemPressed(context, index: 5)),
-          AccountItem(title: AppStrings.help, icon: ImageAssets.help, onTap: () => onItemPressed(context, index: 6)),
-          AccountItem(title: AppStrings.about, icon: ImageAssets.about, onTap: () => onItemPressed(context, index: 7)),
+          AccountItem(
+              title: AppStrings.orders,
+              icon: ImageAssets.orders,
+              onTap: () => onItemPressed(context, index: 0)),
+          AccountItem(
+              title: AppStrings.myDetails,
+              icon: ImageAssets.myDetails,
+              onTap: () => onItemPressed(context, index: 1)),
+          AccountItem(
+              title: AppStrings.deliveryAddress,
+              icon: ImageAssets.deliveryAddress,
+              onTap: () => onItemPressed(context, index: 2)),
+          AccountItem(
+              title: AppStrings.paymentMethods,
+              icon: ImageAssets.payment,
+              onTap: () => onItemPressed(context, index: 3)),
+          AccountItem(
+              title: AppStrings.promoCord,
+              icon: ImageAssets.promoCord,
+              onTap: () => onItemPressed(context, index: 4)),
+          AccountItem(
+              title: AppStrings.notifications,
+              icon: ImageAssets.notification,
+              onTap: () => onItemPressed(context, index: 5)),
+          AccountItem(
+              title: AppStrings.help,
+              icon: ImageAssets.help,
+              onTap: () => onItemPressed(context, index: 6)),
+          AccountItem(
+              title: AppStrings.about,
+              icon: ImageAssets.about,
+              onTap: () => onItemPressed(context, index: 7)),
           Divider(
             thickness: AppSize.s1,
             color: ColorManager.white4,
@@ -94,14 +126,16 @@ class _AccountPageState extends State<AccountPage> {
                 _logout();
               },
               style: ElevatedButton.styleFrom(
-                primary: ColorManager.darkLightGrey,
+                backgroundColor: ColorManager.darkLightGrey,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Icon(Icons.logout, color: ColorManager.primary),
                   const SizedBox(width: AppSize.s100),
-                  Text(AppStrings.logOut, style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.primary)),
+                  Text(AppStrings.logOut,
+                      style: getSemiBoldStyle(
+                          fontSize: FontSize.s18, color: ColorManager.primary)),
                 ],
               ),
             ),
@@ -112,10 +146,8 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index})
-  {
-    switch(index)
-    {
+  void onItemPressed(BuildContext context, {required int index}) {
+    switch (index) {
       case 0:
         break;
 
@@ -142,7 +174,7 @@ class _AccountPageState extends State<AccountPage> {
     }
   }
 
-  _logout(){
+  _logout() {
     _appPreferences.logout();
     Navigator.pushReplacementNamed(context, Routes.loginRoute);
   }
