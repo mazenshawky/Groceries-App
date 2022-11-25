@@ -5,7 +5,7 @@ import 'package:groceries_app/presentation/resources/values_manager.dart';
 
 import 'font_manager.dart';
 
-ThemeData getApplicationTheme(){
+ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,
@@ -25,9 +25,10 @@ ThemeData getApplicationTheme(){
       elevation: AppSize.s0,
       selectedItemColor: ColorManager.primary,
       unselectedItemColor: ColorManager.black,
-      selectedLabelStyle: getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.primary),
-      unselectedLabelStyle: getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.black),
-
+      selectedLabelStyle:
+          getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.primary),
+      unselectedLabelStyle:
+          getSemiBoldStyle(fontSize: FontSize.s12, color: ColorManager.black),
     ),
 
     // button theme
@@ -41,8 +42,9 @@ ThemeData getApplicationTheme(){
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.white2),
-        primary: ColorManager.primary,
+        textStyle: getSemiBoldStyle(
+            fontSize: FontSize.s18, color: ColorManager.white2),
+        backgroundColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSize.s19),
         ),
@@ -51,31 +53,49 @@ ThemeData getApplicationTheme(){
 
     // text theme
     textTheme: TextTheme(
-      headlineLarge: getSemiBoldStyle(fontSize: FontSize.s48, color: ColorManager.white),
-      headlineMedium: getSemiBoldStyle(fontSize: FontSize.s26, color: ColorManager.black),
-      headlineSmall: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.grey),
-      labelLarge: getSemiBoldStyle(fontSize: FontSize.s24, color: ColorManager.black),
-      labelMedium: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.black),
-      labelSmall: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.primary),
-      titleMedium: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.lightWhite),
-      titleLarge: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.primary),
-      titleSmall: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.grey),
-      bodyLarge: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.darkGrey),
-      bodyMedium: getMediumStyle(fontSize: FontSize.s18, color: ColorManager.black),
-      bodySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
-      displayLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
-      displayMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
-      displaySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
+      headlineLarge:
+          getSemiBoldStyle(fontSize: FontSize.s48, color: ColorManager.white),
+      headlineMedium:
+          getSemiBoldStyle(fontSize: FontSize.s26, color: ColorManager.black),
+      headlineSmall:
+          getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.grey),
+      labelLarge:
+          getSemiBoldStyle(fontSize: FontSize.s24, color: ColorManager.black),
+      labelMedium:
+          getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.black),
+      labelSmall:
+          getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.primary),
+      titleMedium: getMediumStyle(
+          fontSize: FontSize.s16, color: ColorManager.lightWhite),
+      titleLarge:
+          getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.primary),
+      titleSmall:
+          getMediumStyle(fontSize: FontSize.s16, color: ColorManager.grey),
+      bodyLarge: getSemiBoldStyle(
+          fontSize: FontSize.s18, color: ColorManager.darkGrey),
+      bodyMedium:
+          getMediumStyle(fontSize: FontSize.s18, color: ColorManager.black),
+      bodySmall:
+          getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
+      displayLarge:
+          getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
+      displayMedium:
+          getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
+      displaySmall:
+          getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
     ),
 
     // input decoration theme(text form field)
     inputDecorationTheme: InputDecorationTheme(
-      hintStyle: getMediumStyle(fontSize: FontSize.s18, color: ColorManager.lightGrey),
-      labelStyle: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.grey),
+      hintStyle:
+          getMediumStyle(fontSize: FontSize.s18, color: ColorManager.lightGrey),
+      labelStyle:
+          getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.grey),
       errorStyle: getRegularStyle(color: ColorManager.error),
 
       enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.lightLightGrey, width: AppSize.s1),
+        borderSide:
+            BorderSide(color: ColorManager.lightLightGrey, width: AppSize.s1),
       ),
 
       focusedBorder: UnderlineInputBorder(

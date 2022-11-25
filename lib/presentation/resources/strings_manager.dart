@@ -12,7 +12,7 @@ class AppStrings {
   static const invalidPassword = "Password should be at least 6 chars";
   static const forgotPassword = "Forgot Password?";
   static const loginButton = "Log In";
-  static const noAccount = "Don\'t have an account? ";
+  static const noAccount = "Don't have an account? ";
   static const signUp = "Signup";
   static const register = "Sign Up";
   static const registerSubtitle = "Enter your credentials to continue";
@@ -49,7 +49,8 @@ class AppStrings {
   static const tempCount = "1";
   static const tempPrice = "\$4.99";
   static const productDetail = "Product Detail";
-  static const tempDetail = "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.";
+  static const tempDetail =
+      "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.";
   static const nutrition = "Nutrition";
   static const tempWeight = "100gr";
   static const review = "Review";

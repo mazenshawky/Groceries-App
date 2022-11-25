@@ -3,6 +3,8 @@ import 'package:groceries_app/presentation/resources/routes_manager.dart';
 import 'package:groceries_app/presentation/resources/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }

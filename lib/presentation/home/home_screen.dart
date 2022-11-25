@@ -46,12 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  onTap(int index){
+  onTap(int index) {
     setState(() {
       _currentIndex = index;
-      if(_currentIndex == 1) _title = titles[0];
-      else if(_currentIndex == 2) _title = titles[1];
-      else if(_currentIndex == 3) _title = titles[2];
+      if (_currentIndex == 1) {
+        _title = titles[0];
+      } else if (_currentIndex == 2) {
+        _title = titles[1];
+      } else if (_currentIndex == 3) {
+        _title = titles[2];
+      }
     });
   }
 
@@ -71,45 +75,72 @@ class _HomeScreenState extends State<HomeScreen> {
             height: AppSize.s82,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(AppSize.s37), topLeft: Radius.circular(AppSize.s37)),
+                  topRight: Radius.circular(AppSize.s37),
+                  topLeft: Radius.circular(AppSize.s37)),
               boxShadow: [
-                BoxShadow(color: ColorManager.shadow, spreadRadius: AppSize.s5, blurRadius: AppSize.s10, offset: const Offset(AppSize.s0, AppSize.s_12)),
+                BoxShadow(
+                    color: ColorManager.shadow,
+                    spreadRadius: AppSize.s5,
+                    blurRadius: AppSize.s10,
+                    offset: const Offset(AppSize.s0, AppSize.s_12)),
               ],
             ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppSize.s15), topRight: Radius.circular(AppSize.s15)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(AppSize.s15),
+                  topRight: Radius.circular(AppSize.s15)),
               child: BottomNavigationBar(
                 currentIndex: _currentIndex,
                 onTap: onTap,
                 items: [
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.shop, color: _currentIndex == 0 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.shop,
+                            color: _currentIndex == 0
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.shop),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.explore, color: _currentIndex == 1 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.explore,
+                            color: _currentIndex == 1
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.explore),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.cart, color: _currentIndex == 2 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.cart,
+                            color: _currentIndex == 2
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.cart),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.favourite, color: _currentIndex == 3 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.favourite,
+                            color: _currentIndex == 3
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.favourite),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.account, color: _currentIndex == 4 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.account,
+                            color: _currentIndex == 4
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.account),
                 ],
@@ -126,45 +157,72 @@ class _HomeScreenState extends State<HomeScreen> {
             height: AppSize.s82,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(AppSize.s15), topLeft: Radius.circular(AppSize.s15)),
+                  topRight: Radius.circular(AppSize.s15),
+                  topLeft: Radius.circular(AppSize.s15)),
               boxShadow: [
-                BoxShadow(color: ColorManager.shadow, spreadRadius: AppSize.s5, blurRadius: AppSize.s10, offset: const Offset(AppSize.s0, AppSize.s_12)),
+                BoxShadow(
+                    color: ColorManager.shadow,
+                    spreadRadius: AppSize.s5,
+                    blurRadius: AppSize.s10,
+                    offset: const Offset(AppSize.s0, AppSize.s_12)),
               ],
             ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppSize.s15), topRight: Radius.circular(AppSize.s15)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(AppSize.s15),
+                  topRight: Radius.circular(AppSize.s15)),
               child: BottomNavigationBar(
                 currentIndex: _currentIndex,
                 onTap: onTap,
                 items: [
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.shop, color: _currentIndex == 0 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.shop,
+                            color: _currentIndex == 0
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.shop),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.explore, color: _currentIndex == 1 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.explore,
+                            color: _currentIndex == 1
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.explore),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.cart, color: _currentIndex == 2 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.cart,
+                            color: _currentIndex == 2
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.cart),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.favourite, color: _currentIndex == 3 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.favourite,
+                            color: _currentIndex == 3
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.favourite),
                   BottomNavigationBarItem(
                       icon: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: AppSize.s5),
-                        child: SvgPicture.asset(ImageAssets.account, color: _currentIndex == 4 ? ColorManager.primary : ColorManager.black),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSize.s5),
+                        child: SvgPicture.asset(ImageAssets.account,
+                            color: _currentIndex == 4
+                                ? ColorManager.primary
+                                : ColorManager.black),
                       ),
                       label: AppStrings.account),
                 ],
@@ -172,9 +230,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         );
-
     }
   }
 }
 
-enum Screens {withAppBar, withoutAppBar}
+enum Screens { withAppBar, withoutAppBar }
