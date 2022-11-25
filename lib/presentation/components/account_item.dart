@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groceries_app/presentation/resources/styles_manager.dart';
 
-import '../../../../resources/color_manager.dart';
-import '../../../../resources/font_manager.dart';
-import '../../../../resources/strings_manager.dart';
-import '../../../../resources/values_manager.dart';
+import 'divider_widget.dart';
+import '../resources/color_manager.dart';
+import '../resources/font_manager.dart';
+import '../resources/strings_manager.dart';
+import '../resources/values_manager.dart';
 
 class AccountItem extends StatelessWidget {
-  const AccountItem({Key? key, required this.title, required this.icon, required this.onTap}) : super(key: key);
+  const AccountItem({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.onTap,
+  }) : super(key: key);
 
   final String title;
   final String icon;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,8 @@ class AccountItem extends StatelessWidget {
                   const SizedBox(width: AppSize.s20),
                   Text(
                     title,
-                    style: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.black),
+                    style: getSemiBoldStyle(
+                        fontSize: FontSize.s18, color: ColorManager.black),
                   ),
                   Expanded(child: Container()),
                   const Icon(Icons.arrow_forward_ios, size: AppSize.s18),
@@ -38,10 +45,7 @@ class AccountItem extends StatelessWidget {
               ),
             ),
           ),
-          if(title != AppStrings.about) Divider(
-            thickness: AppSize.s1,
-            color: ColorManager.white4,
-          ),
+          if (title != AppStrings.about) const DividerWidget(),
         ],
       ),
     );

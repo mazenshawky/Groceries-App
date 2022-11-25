@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:groceries_app/presentation/components/stacked_carrot_widget.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
@@ -25,14 +26,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final  _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
-  _bind(){
-    _userNameController.addListener(() => _viewModel.setUserName(_userNameController.text));
-    _emailController.addListener(() => _viewModel.setEmail(_emailController.text));
-    _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
-    _viewModel.isUserRegisteredInSuccessfullyStreamController.stream.listen((isRegistered) {
-      if(isRegistered){
+  _bind() {
+    _userNameController
+        .addListener(() => _viewModel.setUserName(_userNameController.text));
+    _emailController
+        .addListener(() => _viewModel.setEmail(_emailController.text));
+    _passwordController
+        .addListener(() => _viewModel.setPassword(_passwordController.text));
+    _viewModel.isUserRegisteredInSuccessfullyStreamController.stream
+        .listen((isRegistered) {
+      if (isRegistered) {
         SchedulerBinding.instance.addPostFrameCallback((_) {
           _appPreferences.setUserLoggedIn();
           Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
@@ -55,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _getContentWidget(){
+  Widget _getContentWidget() {
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
@@ -63,24 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: AppSize.s280,
-              child: Stack(
-                children: [
-                  Container(
-                    height: AppSize.s280,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(ImageAssets.backgroundUp),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Center(child: SvgPicture.asset(ImageAssets.logoOrange)),
-                ],
-              ),
-            ),
+            const StackedCarrotWidget(),
             Padding(
               padding: const EdgeInsets.only(left: AppSize.s25),
               child: Text(
@@ -105,11 +93,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: AppSize.s25, right: AppSize.s28),
+              padding:
+                  const EdgeInsets.only(left: AppSize.s25, right: AppSize.s28),
               child: StreamBuilder<bool>(
                 stream: _viewModel.outIsUserNameValid,
-                builder: (context, snapshot){
+                builder: (context, snapshot) {
                   return TextFormField(
                     style: Theme.of(context).textTheme.bodyMedium,
                     keyboardType: TextInputType.text,
@@ -117,7 +105,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     cursorColor: ColorManager.primary,
                     decoration: InputDecoration(
                       hintText: AppStrings.userName,
-                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidUserName,
+                      errorText: (snapshot.data ?? true)
+                          ? null
+                          : AppStrings.invalidUserName,
                     ),
                   );
                 },
@@ -132,11 +122,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: AppSize.s25, right: AppSize.s28),
+              padding:
+                  const EdgeInsets.only(left: AppSize.s25, right: AppSize.s28),
               child: StreamBuilder<bool>(
                 stream: _viewModel.outIsEmailValid,
-                builder: (context, snapshot){
+                builder: (context, snapshot) {
                   return TextFormField(
                     style: Theme.of(context).textTheme.bodyMedium,
                     keyboardType: TextInputType.emailAddress,
@@ -144,7 +134,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     cursorColor: ColorManager.primary,
                     decoration: InputDecoration(
                       hintText: AppStrings.emailExample,
-                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidEmail,
+                      errorText: (snapshot.data ?? true)
+                          ? null
+                          : AppStrings.invalidEmail,
                     ),
                   );
                 },
@@ -180,27 +172,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             left: AppSize.s25, right: AppSize.s28),
                         child: StreamBuilder<bool>(
                           stream: _viewModel.outIsPasswordValid,
-                          builder: (context, snapshot){
+                          builder: (context, snapshot) {
                             return StreamBuilder<bool>(
                               stream: _viewModel.outIsPasswordVisible,
-                              builder: (context, visibleSnapshot){
+                              builder: (context, visibleSnapshot) {
                                 return TextFormField(
                                   style: Theme.of(context).textTheme.bodyMedium,
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: _passwordController,
-                                  obscureText: (visibleSnapshot.data ?? true) ? true : false,
+                                  obscureText: (visibleSnapshot.data ?? true)
+                                      ? true
+                                      : false,
                                   cursorColor: ColorManager.primary,
-                                  decoration:  InputDecoration(
+                                  decoration: InputDecoration(
                                     hintText: AppStrings.password,
-                                    errorText: (snapshot.data ?? true) ? null : AppStrings.invalidPassword,
+                                    errorText: (snapshot.data ?? true)
+                                        ? null
+                                        : AppStrings.invalidPassword,
                                     suffixIcon: IconButton(
-                                        onPressed: (){
-                                          _viewModel.changePasswordVisibility((visibleSnapshot.data ?? true));
+                                        onPressed: () {
+                                          _viewModel.changePasswordVisibility(
+                                              (visibleSnapshot.data ?? true));
                                         },
-                                        icon: (visibleSnapshot.data ?? true) ?
-                                        Icon(Icons.visibility_off_outlined, color: ColorManager.grey,) :
-                                        Icon(Icons.visibility_outlined, color: ColorManager.grey,)
-                                    ),
+                                        icon: (visibleSnapshot.data ?? true)
+                                            ? Icon(
+                                                Icons.visibility_off_outlined,
+                                                color: ColorManager.grey,
+                                              )
+                                            : Icon(
+                                                Icons.visibility_outlined,
+                                                color: ColorManager.grey,
+                                              )),
                                   ),
                                 );
                               },
@@ -210,7 +212,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       const SizedBox(height: AppSize.s20),
                       Padding(
-                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        padding: const EdgeInsets.only(
+                            left: AppSize.s25, right: AppSize.s25),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -219,10 +222,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               style: Theme.of(context).textTheme.displaySmall,
                             ),
                             InkWell(
-                              onTap: (){},
+                              onTap: () {},
                               child: Text(
                                 AppStrings.termOfService,
-                                style: Theme.of(context).textTheme.displayMedium,
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
                               ),
                             ),
                           ],
@@ -230,7 +234,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       const SizedBox(height: AppSize.s8),
                       Padding(
-                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        padding: const EdgeInsets.only(
+                            left: AppSize.s25, right: AppSize.s25),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -239,10 +244,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               style: Theme.of(context).textTheme.displaySmall,
                             ),
                             InkWell(
-                              onTap: (){},
+                              onTap: () {},
                               child: Text(
                                 AppStrings.privacyPolicy,
-                                style: Theme.of(context).textTheme.displayMedium,
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
                               ),
                             ),
                           ],
@@ -259,24 +265,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     width: AppSize.s353,
                                     height: AppSize.s67,
                                     child: ElevatedButton(
-                                        onPressed:
-                                        (snapshot.data ?? false)
-                                            ? (){
-                                          _viewModel.register();
-                                        }
+                                        onPressed: (snapshot.data ?? false)
+                                            ? () {
+                                                _viewModel.register();
+                                              }
                                             : null,
                                         child: const Text(
                                           AppStrings.register,
                                         )));
-                              }
-                          ),
+                              }),
                         ],
                       ),
                       const SizedBox(height: AppSize.s25),
                       Padding(
-                        padding: const EdgeInsets.only(left: AppSize.s25, right: AppSize.s25),
+                        padding: const EdgeInsets.only(
+                            left: AppSize.s25, right: AppSize.s25),
                         child: InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.of(context).pop();
                           },
                           child: Row(
@@ -304,6 +309,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+
   @override
   void dispose() {
     _viewModel.dispose();

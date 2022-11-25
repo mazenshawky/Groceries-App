@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:groceries_app/presentation/home/pages/account/view/account_item.dart';
+import 'package:groceries_app/presentation/components/account_item.dart';
+import 'package:groceries_app/presentation/components/logout_button.dart';
 
 import '../../../../../app/app_prefs.dart';
 import '../../../../../app/di.dart';
+import '../../../../components/account_image_widget.dart';
+import '../../../../components/account_name_widget.dart';
+import '../../../../components/divider_widget.dart';
 import '../../../../resources/assets_manager.dart';
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/font_manager.dart';
@@ -28,42 +32,20 @@ class _AccountPageState extends State<AccountPage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-                left: AppPadding.p25,
-                bottom: AppPadding.p20,
-                top: AppPadding.p70),
+              left: AppPadding.p25,
+              bottom: AppPadding.p20,
+              top: AppPadding.p70,
+            ),
             child: Row(
               children: [
-                Container(
-                  width: AppSize.s64,
-                  height: AppSize.s64,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppSize.s27),
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(ImageAssets.accountImage),
-                      )),
-                ),
+                const AccountImageWidget(),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: AppPadding.p20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              AppStrings.name,
-                              style: getBoldStyle(
-                                  fontSize: FontSize.s20,
-                                  color: ColorManager.black),
-                            ),
-                            const SizedBox(width: AppSize.s10),
-                            InkWell(
-                                onTap: () {},
-                                child: Icon(Icons.edit_outlined,
-                                    color: ColorManager.primary))
-                          ],
-                        ),
+                        const AccountNameWidget(),
                         const SizedBox(height: AppSize.s3),
                         Text(
                           AppStrings.emailAddress,
@@ -77,10 +59,7 @@ class _AccountPageState extends State<AccountPage> {
               ],
             ),
           ),
-          Divider(
-            thickness: AppSize.s1,
-            color: ColorManager.white4,
-          ),
+          const DividerWidget(),
           AccountItem(
               title: AppStrings.orders,
               icon: ImageAssets.orders,
@@ -113,33 +92,9 @@ class _AccountPageState extends State<AccountPage> {
               title: AppStrings.about,
               icon: ImageAssets.about,
               onTap: () => onItemPressed(context, index: 7)),
-          Divider(
-            thickness: AppSize.s1,
-            color: ColorManager.white4,
-          ),
+          const DividerWidget(),
           const SizedBox(height: AppSize.s50),
-          SizedBox(
-            width: AppSize.s353,
-            height: AppSize.s67,
-            child: ElevatedButton(
-              onPressed: () {
-                _logout();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorManager.darkLightGrey,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.logout, color: ColorManager.primary),
-                  const SizedBox(width: AppSize.s100),
-                  Text(AppStrings.logOut,
-                      style: getSemiBoldStyle(
-                          fontSize: FontSize.s18, color: ColorManager.primary)),
-                ],
-              ),
-            ),
-          ),
+          LogoutButton(logout: _logout),
           const SizedBox(height: AppSize.s25),
         ],
       ),
